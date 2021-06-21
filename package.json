@@ -1,5 +1,5 @@
 {
-  "name": "stormbeatz-lavaclient_",
+  "name": "stormbeatz-lavaclient",
   "version": "1.0.0",
   "description": "A simple, easy-to-use, and flexible lavalink client for node.js. Forked from Lavaclient. Used for StormBeatz.",
   "main": "src/index.js",
