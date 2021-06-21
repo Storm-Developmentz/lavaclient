@@ -2,7 +2,7 @@
   "name": "stormbeatz-lavaclient",
   "version": "1.0.5",
   "description": "A simple, easy-to-use, and flexible lavalink client for node.js. Forked from Lavaclient. Used for StormBeatz.",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "types": "index.d.ts",
   "repository": {
     "type": "git",
@@ -40,5 +40,8 @@
   "homepage": "https://github.com/muhimur9049/lavaclient#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "directories": {
+    "doc": "docs"
   }
 }
