@@ -13,6 +13,11 @@ export class Player extends EventEmitter {
   readonly guild: string;
 
   /**
+   * Object  of filters
+   */
+  state: Object;
+
+  /**
    * The socket this player belongs to.
    */
   socket: Socket;
@@ -89,6 +94,7 @@ export class Player extends EventEmitter {
 
     this.socket = socket;
     this.guild = guild;
+    this.state = { equalizer: [], timescale: {}, tremolo: {}, vibrato: {}, karaoke: {}, distortion: {}, rotation: {}, channelMix: {}, lowPass: {} };
 
     this.paused = false;
     this.playing = false;
@@ -189,7 +195,7 @@ export class Player extends EventEmitter {
     if (volume < 0 || volume > 1000) {
       throw new RangeError(`Player#setVolume (${this.guild}): Volume must be within the 0 to 1000 range.`);
     }
-    
+
     this.volume = volume
     return this.send("volume", { volume });
   }
@@ -243,7 +249,7 @@ export class Player extends EventEmitter {
    *
    * @deprecated Please use Filters#equalizer and Filters#apply
    */
-  setEqualizer(bands: Lavalink.EqualizerBand[], asFilter: Boolean = false): this {
+  equalizer(bands: Lavalink.EqualizerBand[], asFilter: Boolean = false): this {
     if (asFilter) {
       this.filters.equalizer = bands;
       this.filters.apply();
@@ -252,6 +258,60 @@ export class Player extends EventEmitter {
     }
 
     return this;
+  }
+
+  timescale(settings: Object): this {
+    const d = this.send("filters", { timescale: settings });
+    this.state.timescale = settings;
+    return d;
+  }
+
+  vibrato(settings: Object): this {
+    const d = this.send("filters", { vibrato: settings });
+    this.state.vibrato = settings;
+    return d;
+  }
+
+  tremolo(settings: Object): this {
+    const d = this.send("filters", { tremolo: settings });
+    this.state.tremolo = settings;
+    return d;
+  }
+
+  karaoke(settings: Object): this {
+    const d = this.send("filters", { karaoke: settings });
+    this.state.karaoke = settings;
+    return d;
+  }
+
+  distortion(settings: Object): this {
+    const d = this.send("filters", { distortion: settings });
+    this.state.distortion = settings;
+    return d;
+  }
+
+  rotation(settings: Object): this {
+    const d = this.send("filters", { rotation: settings });
+    this.state.rotation = settings;
+    return d;
+  }
+
+  channelMix(settings: Object): this {
+    const d = this.send("filters", { channelMix: settings });
+    this.state.channelMix = settings;
+    return d;
+  }
+
+  lowPass(settings: Object) {
+    const d = this.send("filters", { lowPass: settings });
+    this.state.lowPass = settings;
+    return d;
+  }
+
+  filter(settings) {
+    const d = this.send("filters", settings);
+    this.state = settings;
+    return d;
   }
 
   /**
