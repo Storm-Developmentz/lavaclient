@@ -23,7 +23,7 @@
     "easy"
   ],
   "dependencies": {
-    "@lavaclient/types": "2.0.8",
+    "stormbeatz-lavaclient-types": "github:storm-developmentz/lavaclient-plugins#types",
     "petitio": "^1.2.1",
     "ws": "^7.4.6"
   },
