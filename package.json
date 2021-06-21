@@ -6,7 +6,7 @@
   "types": "index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/muhimur9049/lavaclient.git"
+    "url": "git+https://github.com/Storm-Developmentz/lavaclient.git"
   },
   "author": "MeLike2D",
   "license": "MIT",
@@ -35,9 +35,9 @@
     "node": ">=14.x.x"
   },
   "bugs": {
-    "url": "https://github.com/muhimur9049/lavaclient/issues"
+    "url": "https://github.com/Storm-Developmentz/lavaclient/issues"
   },
-  "homepage": "https://github.com/muhimur9049/lavaclient#readme",
+  "homepage": "https://github.com/Storm-Developmentz/lavaclient#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
