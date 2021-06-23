@@ -211,10 +211,8 @@ class Player extends events_1.EventEmitter {
     }
     return this;
   }
-  send(op, data = {}, priority = false) {
-    data.guildId ?? (data.guildId = this.guild);
-    this.socket.send({ op, ...data }, priority);
-    return this;
+  send(op, data) {
+    return this.socket.send({ ...data, op, guildId: this.guild });
   }
   async _event(event) {
     switch (event.type) {
