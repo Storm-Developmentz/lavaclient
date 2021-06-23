@@ -23,12 +23,10 @@ class Player extends events_1.EventEmitter {
     _filters.set(this, void 0);
     this.socket = socket;
     this.guild = guild;
-    this.state = { equalizer: [], timescale: {}, tremolo: {}, vibrato: {}, karaoke: {}, distortion: {}, rotation: {}, channelMix: {}, lowPass: {} };
+    this.state = { volume: 100, equalizer: [], timescale: {}, tremolo: {}, vibrato: {}, karaoke: {}, distortion: {}, rotation: {}, channelMix: {}, lowPass: {} };
     this.paused = false;
     this.playing = false;
     this.position = 0;
-    this.volume = 100;
-    this.equalizer = [];
     this.connected = false;
     this.on("playerUpdate", this._playerUpdate.bind(this));
     this.on("event", this._event.bind(this));
@@ -77,7 +75,7 @@ class Player extends events_1.EventEmitter {
     if (volume < 0 || volume > 1000) {
       throw new RangeError(`Player#setVolume (${this.guild}): Volume must be within the 0 to 1000 range.`);
     }
-    this.volume = volume;
+    this.state.volume = volume;
     return this.send("volume", { volume });
   }
   pause(state = true) {
@@ -190,7 +188,7 @@ class Player extends events_1.EventEmitter {
 
   async filter(settings) {
     const d = await this.send("filters", settings);
-    this.state = settings;
+    this.state = { volume: this.state.volume, ...settings }
     return d;
   }
 
