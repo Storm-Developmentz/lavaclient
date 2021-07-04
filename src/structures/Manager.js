@@ -47,7 +47,7 @@ class Manager extends events_1.EventEmitter {
         }
     }
     get ideal() {
-        return [...this.sockets.values()].sort((a, b) => a.penalties - b.penalties);
+        return [...this.sockets.values()].filter(node => node.connected).sort((a, b) => a.penalties - b.penalties);
     }
     init(userId = this.userId) {
         if (!userId) {
