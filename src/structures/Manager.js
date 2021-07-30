@@ -87,7 +87,7 @@ class Manager extends events_1.EventEmitter {
     async stateUpdate(update) {
         const player = this.players.get(update.guild_id);
         if (player && update.user_id === this.userId) {
-            if (update.channel_id !== player.channel) {
+            if (update.channel_id && update.channel_id !== player.channel) {
                 player.emit("move", update.channel_id);
                 player.channel = update.channel_id;
             }
